@@ -107,3 +107,35 @@ class Federacion(models.Model):
     class Meta:
         verbose_name = "Federación"
         verbose_name_plural = "Federaciones"
+
+class Cancha(models.Model):
+    nombre = models.CharField(max_length=50)
+    orden = models.PositiveIntegerField(help_text="Orden en el circuito")
+
+    def __str__(self):
+        return f"Cancha {self.nombre}"
+
+    class Meta:
+        verbose_name = "Cancha"
+        verbose_name_plural = "Canchas"
+        ordering = ['orden']
+
+class Tiro(models.Model):
+    tirador = models.ForeignKey('Tirador', on_delete=models.CASCADE)
+    cancha = models.ForeignKey('Cancha', on_delete=models.CASCADE)
+    campeonato = models.ForeignKey('Campeonato', on_delete=models.CASCADE)
+    ronda = models.PositiveIntegerField(help_text="Número de paseo del tirador por las canchas")
+    helice_1 = models.BooleanField(verbose_name="Hélice 1 (acierto)")
+    helice_2 = models.BooleanField(verbose_name="Hélice 2 (acierto)")
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def puntuacion(self):
+        return int(self.helice_1) + int(self.helice_2)
+
+    def __str__(self):
+        return f"{self.tirador} - {self.cancha} - Ronda {self.ronda}"
+
+    class Meta:
+        verbose_name = "Tiro"
+        verbose_name_plural = "Tiros"
+        ordering = ['campeonato', 'ronda', 'cancha__orden']

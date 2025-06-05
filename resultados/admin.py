@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tirador, Campeonato, Resultado, Categoria, Equipo, Club, Federacion
+from .models import Tirador, Campeonato, Resultado, Categoria, Equipo, Club, Federacion, Cancha, Tiro
 
 @admin.register(Resultado)
 class ResultadoAdmin(admin.ModelAdmin):
@@ -15,5 +15,7 @@ admin.site.register(Categoria)
 admin.site.register(Equipo)
 admin.site.register(Club)
 admin.site.register(Federacion)
+admin.site.register(Cancha)
+admin.site.register(Tiro)
 
 # Register your models here.
