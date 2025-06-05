@@ -1,0 +1,20 @@
+# Entorno virtual
+helvenv/
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+
+# Archivos de configuración personal
+*.env
+.env
+
+# SQLite database (solo si usas SQLite)
+db.sqlite3
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Archivos de VS Code
+.vscode/
